@@ -1,111 +1,92 @@
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+  /* Muted Scrapbook Color Palette */
+  --parchment: #efe4cf;
+  --old-paper: #dcc8aa;
+  --faded-olive: #8a9a86;
+  --dusty-brown: #8c7a65;
+  --antique-gold: #c2a679;
+  --dried-rose: #c48a8e;
+  --muted-green: #6e8467;
+  --warm-gray: #7d7975;
+  --sepia: #5e4d3c;
+  --faded-burgundy: #6e3c43;
+  --faded-black: #2d2a26;
+  --ink-color: #2b231a;
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+  /* Fonts */
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-cursive: 'Homemade Apple', cursive;
+  --font-typewriter: 'Special Elite', Courier, monospace;
+  --font-sans: 'Outfit', sans-serif;
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
-
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
-
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  padding: 0;
+  background-color: #1a1613; /* Muted deep charcoal/espresso desk background */
+  color: var(--ink-color);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  min-height: 100vh;
+  letter-spacing: 0.02em;
 }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
+/* Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.06;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+/* Scrollbar customization - rustic style */
+::-webkit-scrollbar {
+  width: 10px;
 }
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
+::-webkit-scrollbar-track {
+  background: #1a1613;
 }
-p {
-  margin: 0;
-}
-
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
+::-webkit-scrollbar-thumb {
+  background: var(--dusty-brown);
   border-radius: 4px;
-  color: var(--text-h);
+  border: 2px solid #1a1613;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--antique-gold);
 }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+/* Typography Utility Classes */
+.cursive-text {
+  font-family: var(--font-cursive);
+  color: var(--ink-color);
+  line-height: 2;
+  font-weight: normal;
+}
+
+.serif-body-text {
+  font-family: var(--font-serif);
+  line-height: 1.8;
+  font-size: 1.15rem;
+}
+
+/* Ink bleed animation simulation */
+.ink-bleed-1 {
+  opacity: 0.9;
+  text-shadow: 0 0 1px rgba(43, 35, 26, 0.4);
+}
+
+.ink-bleed-2 {
+  opacity: 0.85;
+  text-shadow: 0 0 1px rgba(43, 35, 26, 0.5);
+}
+
+.fading-text {
+  color: rgba(43, 35, 26, 0.75);
 }

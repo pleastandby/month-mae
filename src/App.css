@@ -1,184 +1,970 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* ==========================================================================
+   GLOBAL SCRAPBOOK CONTAINER
+   ========================================================================== */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
+.scrapbook-viewport {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px 100px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
-.hero {
+/* The physical paper board representing the open scrapbook pages */
+.scrapbook-desk {
+  width: 100%;
+  max-width: 780px;
+  background-image: url('./assets/old_paper.jpg');
+  background-size: cover;
+  background-position: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
   position: relative;
+  padding: 60px 48px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 120px; /* Large gap between sections to resemble pages */
+  overflow: hidden;
+  border: 1px solid rgba(94, 77, 60, 0.25);
+}
 
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
+/* Base Scrapbook Page Section */
+.scrapbook-page {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  animation: page-fade-in 1.2s ease-out;
+}
+
+/* ==========================================================================
+   PAGE 1: INTRO SECTION
+   ========================================================================== */
+
+.page-intro {
+  align-items: flex-start;
+  padding-top: 20px;
+}
+
+.vintage-postmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 76px;
+  height: 76px;
+  border: 2px dashed var(--faded-burgundy);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-typewriter);
+  color: var(--faded-burgundy);
+  font-size: 0.8rem;
+  opacity: 0.65;
+  transform: rotate(12deg);
+  pointer-events: none;
+  line-height: 1.3;
+}
+
+.intro-title-wrapper {
+  margin-bottom: 36px;
+}
+
+.scrapbook-title {
+  font-family: var(--font-serif);
+  font-size: 3.4rem;
+  font-weight: 500;
+  color: var(--faded-burgundy);
+  margin: 0 0 10px;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+}
+
+.scrapbook-date {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: var(--dusty-brown);
+  border-bottom: 1px solid rgba(140, 122, 101, 0.3);
+  padding-bottom: 4px;
+}
+
+.intro-text {
+  max-width: 580px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.intro-text .cursive-text {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.intro-text .serif-body-text {
+  font-size: 1.25rem;
+  margin: 15px 0 0;
+  color: var(--sepia);
+  font-style: italic;
+}
+
+.pressed-flower-stamp {
+  opacity: 0.75;
+  pointer-events: none;
+  filter: sepia(0.2) contrast(0.9);
+}
+
+.pressed-flower-stamp.position-1 {
+  position: absolute;
+  bottom: -40px;
+  right: 0px;
+  width: 140px;
+  height: auto;
+  transform: rotate(-15deg);
+}
+
+/* ==========================================================================
+   PAGE 2: PHOTO COLLAGE (POLAROIDS)
+   ========================================================================== */
+
+.page-photos {
+  align-items: center;
+}
+
+.scrapbook-section-title {
+  font-family: var(--font-serif);
+  font-size: 1.9rem;
+  color: var(--sepia);
+  margin: 0 0 40px;
+  text-transform: lowercase;
+  font-style: italic;
+  border-bottom: 1px double rgba(94, 77, 60, 0.2);
+  width: 100%;
+  text-align: center;
+  padding-bottom: 12px;
+}
+
+.photo-collage-area {
+  position: relative;
+  width: 100%;
+  height: 480px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Old Polaroid styling */
+.polaroid-scrapbook {
+  position: absolute;
+  background: #fcf9f2; /* Old photo frame yellowed white */
+  padding: 12px 12px 28px;
+  box-shadow: 3px 12px 30px rgba(0, 0, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 1px;
+  width: 250px;
+  height: 310px;
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+  z-index: 10;
+  border: 1px solid rgba(94, 77, 60, 0.1);
+}
+
+.polaroid-scrapbook:hover {
+  transform: rotate(0deg) scale(1.04) translateY(-8px) !important;
+  box-shadow: 8px 20px 40px rgba(0, 0, 0, 0.35);
+  z-index: 50;
+}
+
+.polaroid-img-frame {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background-color: #222;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+.polaroid-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.15) contrast(0.95) saturate(0.9); /* Vintage photo filter tint */
+}
+
+.polaroid-glare {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.12) 0%,
+    rgba(255,255,255,0) 50%
+  );
+  pointer-events: none;
+}
+
+.polaroid-handwriting {
+  font-family: var(--font-cursive);
+  font-size: 0.95rem;
+  color: rgba(43, 35, 26, 0.9);
+  text-align: center;
+  margin: 14px 0 0;
+  line-height: 1.2;
+}
+
+.card-rotated-left {
+  left: 30px;
+  top: 40px;
+  transform: rotate(-6deg);
+}
+
+.card-rotated-right {
+  right: 30px;
+  bottom: 40px;
+  transform: rotate(4deg);
+  z-index: 20; /* Overlaps left card slightly */
+}
+
+/* Semi-transparent Masking Tape */
+.masking-tape {
+  position: absolute;
+  background-color: rgba(220, 200, 170, 0.45);
+  backdrop-filter: blur(0.5px);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  height: 26px;
+  width: 90px;
+  z-index: 100;
+  border-left: 2px dashed rgba(94, 77, 60, 0.15);
+  border-right: 2px dashed rgba(94, 77, 60, 0.15);
+}
+
+.tape-top {
+  top: -14px;
+  left: 80px;
+  transform: rotate(-2deg);
+}
+
+.tape-corner {
+  top: -12px;
+  right: -20px;
+  transform: rotate(35deg);
+  width: 100px;
+}
+
+/* Pressed botanical leaf tucked under photo */
+.pressed-flower-overlap-left {
+  position: absolute;
+  bottom: -60px;
+  left: -60px;
+  width: 120px;
+  height: auto;
+  transform: rotate(-35deg);
+  z-index: -1;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.pressed-flower-overlap-right {
+  position: absolute;
+  bottom: -45px;
+  left: -40px;
+  width: 130px;
+  height: auto;
+  transform: rotate(40deg);
+  z-index: -1;
+  opacity: 0.75;
+  pointer-events: none;
+}
+
+.journal-flower-accent {
+  position: absolute;
+  top: -30px;
+  right: -40px;
+  width: 140px;
+  height: auto;
+  transform: rotate(15deg);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   PAGE 3: JOURNAL WRITING
+   ========================================================================== */
+
+.page-journal {
+  align-items: center;
+}
+
+/* Lined Notebook Page Sheet */
+.torn-notebook-paper {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  background-color: #fcf9f0; /* Notebook ivory */
+  border: 1px solid rgba(94, 77, 60, 0.18);
+  box-shadow: 4px 10px 25px rgba(0, 0, 0, 0.18);
+  padding: 40px 48px 48px;
+  box-sizing: border-box;
+  border-radius: 2px;
+  transform: rotate(-1deg);
+}
+
+/* Torn holes at top */
+.notebook-spiral-holes {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.spiral-hole {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(94, 77, 60, 0.15);
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.spiral-hole::after {
+  content: '';
+  position: absolute;
+  top: -14px;
+  left: 4px;
+  width: 2px;
+  height: 14px;
+  background-color: #1a1613; /* spiral tear cutout link to background */
+}
+
+/* Vintage Coffee cup stain ring */
+.coffee-stain {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3.5px solid rgba(132, 102, 73, 0.13);
+  filter: blur(1.5px);
+  transform: rotate(24deg);
+  pointer-events: none;
+}
+
+.coffee-stain::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border-radius: 50%;
+  border: 1px solid rgba(132, 102, 73, 0.07);
+}
+
+/* Notepad writing structure */
+.notebook-content {
+  background-image: linear-gradient(rgba(168, 197, 255, 0) 0%, rgba(168, 197, 255, 0) 97%, rgba(94, 77, 60, 0.12) 97%, rgba(94, 77, 60, 0.12) 100%);
+  background-size: 100% 36px;
+  line-height: 36px;
+  padding-top: 18px;
+}
+
+.notebook-date-hand {
+  display: block;
+  font-family: var(--font-cursive);
+  font-size: 0.9rem;
+  color: var(--warm-gray);
+  text-align: right;
+  margin-bottom: 24px;
+  line-height: 1;
+}
+
+.notebook-salutation {
+  font-family: var(--font-cursive);
+  font-size: 1.4rem;
+  color: var(--faded-burgundy);
+  margin: 0 0 18px;
+}
+
+.notebook-para {
+  font-family: var(--font-cursive);
+  font-size: 1.25rem;
+  color: var(--ink-color);
+  margin: 0 0 36px;
+  text-indent: 20px;
+}
+
+/* ==========================================================================
+   PAGE 4: MEMORY FRAGMENTS
+   ========================================================================== */
+
+.page-fragments {
+  align-items: center;
+}
+
+.fragments-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  width: 100%;
+  position: relative;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+.memory-fragment {
+  padding: 24px 28px;
+  box-shadow: 2px 8px 20px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.memory-fragment:hover {
+  transform: scale(1.03) rotate(0deg) !important;
+  box-shadow: 4px 12px 25px rgba(0,0,0,0.22);
+}
+
+/* Custom styled paper clips & pins for scraps */
+.paperclip-svg {
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  color: var(--warm-gray);
+  transform: rotate(-10deg);
+  opacity: 0.85;
+}
+
+.tape-small {
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 35px);
+  width: 70px;
+  height: 18px;
+  background-color: rgba(220, 200, 170, 0.4);
+  transform: rotate(-4deg);
+}
+
+/* Fragment 1: Tea stained notepad scrap */
+.fragment-1 {
+  background-color: #ebdcb9;
+  border-radius: 1px;
+  transform: rotate(-2.5deg);
+  border-left: 2px solid rgba(0,0,0,0.05);
+}
+
+.fragment-1 .fragment-cursive {
+  font-family: var(--font-cursive);
+  font-size: 1.2rem;
+  color: #3b2c1e;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Fragment 2: Blue Grid Post-it */
+.fragment-2 {
+  background-color: #dcedeb;
+  background-image: 
+    linear-gradient(rgba(94, 120, 120, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(94, 120, 120, 0.08) 1px, transparent 1px);
+  background-size: 16px 16px;
+  transform: rotate(3deg);
+  border: 1px solid rgba(94, 120, 120, 0.15);
+}
+
+.fragment-2 .fragment-typewriter {
+  font-family: var(--font-typewriter);
+  font-size: 1rem;
+  color: #2b3a3a;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Fragment 3: Dusty rose clean paper fragment */
+.fragment-3 {
+  background-color: #f7ebe8;
+  transform: rotate(1.5deg);
+  border: 1px solid rgba(196, 138, 142, 0.2);
+}
+
+.fragment-3 .fragment-cursive {
+  font-family: var(--font-cursive);
+  font-size: 1.15rem;
+  color: var(--faded-burgundy);
+  margin: 0;
+  line-height: 1.7;
+}
+
+.fragment-flower {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  width: 76px;
+  height: auto;
+  opacity: 0.55;
+  transform: rotate(-25deg);
+  pointer-events: none;
+}
+
+/* Fragment 4: Kraft cardboard scrap */
+.fragment-4 {
+  background-color: #d1b899;
+  transform: rotate(-3.5deg);
+  border-radius: 2px;
+}
+
+.fragment-4 .fragment-typewriter {
+  font-family: var(--font-typewriter);
+  font-size: 0.95rem;
+  color: #3d2f21;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   PAGE 5: ENDING / OUTRO
+   ========================================================================== */
+
+.page-ending {
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.ending-paper {
+  text-align: center;
+  width: 100%;
+  max-width: 520px;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.ending-title {
+  font-family: var(--font-serif);
+  font-size: 2.3rem;
+  color: var(--faded-burgundy);
+  margin: 0 0 30px;
+  font-weight: 500;
+}
+
+.ending-body {
+  font-size: 1.5rem;
+  margin: 0 0 16px;
+  line-height: 1.8;
+  color: var(--sepia);
+}
+
+.ending-signature {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-top: 48px;
+  padding-right: 40px;
+}
+
+.sig-label {
+  font-family: var(--font-cursive);
+  font-size: 1.1rem;
+  color: var(--warm-gray);
+  margin-bottom: 12px;
+}
+
+.signature-name {
+  font-family: var(--font-cursive);
+  font-size: 2rem;
+  color: var(--faded-burgundy);
+  font-weight: bold;
+  transform: rotate(-4deg);
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.05);
+}
+
+.pressed-rose-outro {
+  width: 100px;
+  height: auto;
+  margin-top: 36px;
+  opacity: 0.65;
+  filter: grayscale(0.1) sepia(0.2);
+  transform: rotate(10deg);
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   VINTAGE GRAMOPHONE PLAYER LAYOUT
+   ========================================================================== */
+
+.gramophone-fixed-container {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  pointer-events: none; /* Let clicks pass to child elements */
+}
+
+.gramophone-wrapper {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  background-color: rgba(30, 26, 22, 0.85); /* Dark matching wood block */
+  border: 1px solid rgba(220, 200, 170, 0.2);
+  border-radius: 50%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: auto; /* Re-enable pointer events for play trigger */
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+}
+
+.gramophone-wrapper:hover {
+  transform: scale(1.08) rotate(5deg);
+  border-color: var(--antique-gold);
+}
+
+.gramophone-image {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  opacity: 0.85;
+  filter: sepia(0.3) drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+/* Arm/needle tilt simulation when active */
+.gramophone-needle {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 2px;
+  height: 18px;
+  background-color: var(--antique-gold);
+  transform-origin: top right;
+  transform: rotate(-20deg);
+  transition: transform 0.6s ease;
+  z-index: 10;
+  box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.gramophone-wrapper.playing .gramophone-needle {
+  transform: rotate(5deg);
+}
+
+.gramophone-wrapper.playing {
+  animation: gramophone-sway 4s ease-in-out infinite alternate;
+  box-shadow: 0 0 15px rgba(194, 166, 121, 0.2), 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+@keyframes gramophone-sway {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.02) rotate(3deg); }
+}
+
+/* Antique gramophone audio rings radiating */
+.gramophone-soundwaves {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.gramophone-soundwaves .ring {
+  position: absolute;
+  border: 1px solid rgba(194, 166, 121, 0.3);
+  width: 100%; height: 100%;
+  border-radius: 50%;
+  top: 0; left: 0;
+  box-sizing: border-box;
+  animation: soundwave-ripple 2s infinite linear;
+}
+
+.gramophone-soundwaves .ring2 {
+  animation-delay: 1s;
+}
+
+@keyframes soundwave-ripple {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* Music play text description tooltip */
+.gramophone-instruction {
+  background-color: rgba(26, 22, 19, 0.9);
+  border: 1px solid rgba(220, 200, 170, 0.15);
+  padding: 8px 12px;
+  border-radius: 4px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  pointer-events: auto;
+  max-width: 180px;
+}
+
+.gramophone-note {
+  font-family: var(--font-cursive);
+  font-size: 0.85rem;
+  color: var(--antique-gold);
+  white-space: nowrap;
+}
+
+.gramophone-error {
+  font-size: 0.65rem;
+  color: var(--dried-rose);
+  font-family: var(--font-sans);
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 768px) {
+  .scrapbook-desk {
+    padding: 40px 24px;
+    gap: 80px;
+  }
+
+  .scrapbook-title {
+    font-size: 2.5rem;
+  }
+
+  .photo-collage-area {
+    height: 640px;
+    flex-direction: column;
+    gap: 30px;
+  }
+
+  .polaroid-scrapbook {
+    position: static;
+    transform: rotate(0deg) !important;
     margin: 0 auto;
   }
 
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
+  .polaroid-scrapbook:hover {
+    transform: scale(1.03) !important;
   }
 
-  .framework,
-  .vite {
-    position: absolute;
+  .card-rotated-left, .card-rotated-right {
+    transform: none;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    top: auto;
   }
 
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
+  .pressed-flower-overlap {
+    display: none;
   }
 
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
+  .fragments-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .memory-fragment {
+    transform: none !important;
+  }
+
+  .gramophone-fixed-container {
+    bottom: 16px;
+    left: 16px;
+    gap: 10px;
+  }
+
+  .gramophone-instruction {
+    max-width: 140px;
+  }
+
+  .gramophone-note {
+    font-size: 0.78rem;
   }
 }
 
-#center {
+/* ==========================================================================
+   ENTRANCE ANIMATIONS
+   ========================================================================== */
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ==========================================================================
+   SPOTIFY SCRAPBOOK CARD
+   ========================================================================== */
+
+.spotify-scrapbook-card {
+  position: relative;
+  background-color: #1e1b18; /* Dark brown/black retro card background */
+  border: 1px solid rgba(220, 200, 170, 0.2);
+  box-shadow: 2px 10px 25px rgba(0, 0, 0, 0.35);
+  padding: 16px;
+  width: 290px;
+  max-width: 100%;
+  border-radius: 4px;
+  transform: rotate(-3deg) translate(20px, 10px);
+  z-index: 30;
+  box-sizing: border-box;
+  margin: 32px 0;
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.4s ease;
+}
+
+.spotify-scrapbook-card:hover {
+  transform: rotate(0deg) scale(1.03) translate(20px, 10px);
+  box-shadow: 4px 15px 35px rgba(0, 0, 0, 0.45);
+}
+
+.tape-card-top {
+  top: -12px;
+  left: 30px;
+  width: 80px;
+  height: 20px;
+  background-color: rgba(220, 200, 170, 0.35);
+  transform: rotate(1deg);
+}
+
+.spotify-card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.spotify-card-logo {
+  height: 16px;
+  width: auto;
+  opacity: 0.8;
+  filter: sepia(0.1) brightness(0.9);
+}
+
+.spotify-card-playlist {
+  font-family: var(--font-typewriter);
+  font-size: 0.68rem;
+  color: var(--antique-gold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.spotify-card-body {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.spotify-card-art {
+  width: 52px;
+  height: 52px;
+  border-radius: 2px;
+  object-fit: cover;
+  border: 1px solid rgba(220, 200, 170, 0.15);
+  filter: sepia(0.1);
+}
+
+.spotify-card-details {
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  overflow: hidden;
 }
 
-#next-steps {
-  display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+.spotify-card-title {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--parchment);
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
+.spotify-card-artist {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--warm-gray);
 }
 
-#next-steps ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
+.spotify-card-progress {
+  margin-bottom: 10px;
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
-}
-
-.ticks {
-  position: relative;
+/* Scrapbook Styled Slider */
+.spotify-card-slider {
+  -webkit-appearance: none;
   width: 100%;
+  height: 3px;
+  border-radius: 1px;
+  outline: none;
+  cursor: pointer;
+  background: #444;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
-  }
+.spotify-card-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--parchment);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
-  }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+.spotify-card-times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.65rem;
+  font-family: var(--font-typewriter);
+  color: var(--warm-gray);
+  margin-top: 4px;
+}
+
+.spotify-card-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spotify-card-play-btn {
+  background: var(--antique-gold);
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #1e1b18;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.spotify-card-play-btn:hover {
+  transform: scale(1.06);
+  background-color: var(--parchment);
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .spotify-scrapbook-card {
+    transform: rotate(-1.5deg) !important;
+    margin: 20px auto;
   }
 }
