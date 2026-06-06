@@ -11,7 +11,7 @@
   --sepia: #5e4d3c;
   --faded-burgundy: #6e3c43;
   --faded-black: #2d2a26;
-  --ink-color: #2b231a;
+  --ink-color: #120c06;
 
   /* Fonts */
   --font-serif: 'Playfair Display', Georgia, serif;
@@ -76,17 +76,15 @@ body {
   font-size: 1.15rem;
 }
 
-/* Ink bleed animation simulation */
+/* Ink bleed simulation */
 .ink-bleed-1 {
-  opacity: 0.9;
-  text-shadow: 0 0 1px rgba(43, 35, 26, 0.4);
+  opacity: 1;
 }
 
 .ink-bleed-2 {
-  opacity: 0.85;
-  text-shadow: 0 0 1px rgba(43, 35, 26, 0.5);
+  opacity: 1;
 }
 
 .fading-text {
-  color: rgba(43, 35, 26, 0.75);
+  color: var(--ink-color);
 }

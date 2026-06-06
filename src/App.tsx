@@ -100,16 +100,18 @@ function App() {
               <span className="scrapbook-date">May 6, 2026</span>
             </div>
 
-            <div className="intro-text">
-              <p className="cursive-text ink-bleed-1">
-                Last month on this day,
-              </p>
-              <p className="cursive-text ink-bleed-2" style={{ textIndent: '30px' }}>
-                I accidentally found a pretty girl.
-              </p>
-              <p className="serif-body-text fading-text">
-                I never imagined that one conversation could become my favorite part of the day.
-              </p>
+            <div className="intro-paper-sheet">
+              <div className="intro-text">
+                <p className="cursive-text ink-bleed-1">
+                  Last month on this day,
+                </p>
+                <p className="cursive-text ink-bleed-2" style={{ textIndent: '30px' }}>
+                  I accidentally found a pretty girl.
+                </p>
+                <p className="serif-body-text fading-text">
+                  I never imagined that one conversation could become my favorite part of the day.
+                </p>
+              </div>
             </div>
 
             {/* Embedded Spotify Player Card (Tilted) */}
